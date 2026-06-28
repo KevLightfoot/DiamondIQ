@@ -1,0 +1,34 @@
+/* =======================================================
+   GLOBAL STYLES
+   Used by every page in DiamondIQ
+======================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    color:white;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+    font-size:16px;
+}
+
+input{
+    outline:none;
+}

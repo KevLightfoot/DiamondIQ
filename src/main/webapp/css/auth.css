@@ -1,0 +1,263 @@
+/* ==========================================================
+   DIAMONDIQ AUTHENTICATION
+   Used by:
+   - login.jsp
+   - register.jsp
+========================================================== */
+
+/* =======================
+   PAGE BACKGROUND
+======================= */
+
+.auth-body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #111827,
+        #1e293b);
+
+}
+
+/* =======================
+   MAIN CONTAINER
+======================= */
+
+.auth-container{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+/* =======================
+   HEADER
+======================= */
+
+.auth-header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+.auth-title{
+
+    font-size:58px;
+
+    color:white;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.auth-subtitle{
+
+    color:#94a3b8;
+
+    font-size:18px;
+
+}
+
+/* =======================
+   CARD
+======================= */
+
+.auth-card{
+
+    width:440px;
+
+    background:rgba(17,24,39,.93);
+
+    border-radius:20px;
+
+    padding:45px;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.auth-card h2{
+
+    color:white;
+
+    font-size:30px;
+
+    margin-bottom:8px;
+
+}
+
+.auth-description{
+
+    color:#94a3b8;
+
+    margin-bottom:25px;
+
+}
+
+/* =======================
+   FORM
+======================= */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.form-group label{
+
+    color:white;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.form-group input{
+
+    background:#1f2937;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    font-size:16px;
+
+    transition:.25s;
+
+}
+
+.form-group input::placeholder{
+
+    color:#6b7280;
+
+}
+
+.form-group input:focus{
+
+    background:#374151;
+
+    box-shadow:
+    0 0 0 2px #2563eb;
+
+}
+
+/* =======================
+   LOGIN BUTTON
+======================= */
+
+.auth-button{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.auth-button:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/* =======================
+   ERROR
+======================= */
+
+.auth-error{
+
+    color:#ef4444;
+
+    text-align:center;
+
+    min-height:24px;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+/* =======================
+   FOOTER
+======================= */
+
+.auth-footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+.auth-footer p{
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+
+}
+
+.auth-footer a{
+
+    color:#60a5fa;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.auth-footer a:hover{
+
+    color:white;
+
+}
