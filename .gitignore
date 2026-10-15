@@ -7,3 +7,7 @@ build/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Update stats
+stats-update\run_update.ps1
+stats-update/ca.pem
