@@ -104,8 +104,9 @@ public class RegisterServlet extends HttpServlet {
             }
 
         } catch (SQLException e) {
-
-            log("DiamondIQ registration database error", e);
+            log("DIAMONDIQ REGISTER SQL ERROR: " + e.getMessage(), e);
+            e.printStackTrace();
+        
             returnToRegister(request, response,
                     username, email,
                     "Database error.");
