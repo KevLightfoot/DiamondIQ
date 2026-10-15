@@ -1,37 +1,30 @@
+
 package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Provides a centralized method for establishing connections to the
- * DiamondIQ MySQL database.
- *
- * This utility class stores the database connection credentials and
- * returns a new database connection whenever requested by the application's
- * Data Access Objects (DAOs).
- *
- * @author Kevin Lightfoot
- */
 public class DBConnection {
 
-    /** Database connection URL. */
-    private static final String URL = "jdbc:mysql://localhost:3306/diamondiq";
+    private static final String HOST = System.getenv("DB_HOST");
+    private static final String PORT = System.getenv().getOrDefault("DB_PORT", "4000");
+    private static final String DATABASE = System.getenv().getOrDefault("DB_NAME", "diamondiq");
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
-    /** Database username. */
-    private static final String USER = "diamondiq";
-
-    /** Database password. */
-    private static final String PASSWORD = "DiamondIQ2026!";
-
-    /**
-     * Creates and returns a new connection to the DiamondIQ database.
-     *
-     * @return Active database connection
-     * @throws SQLException if a connection cannot be established
-     */
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        if (HOST == null || HOST.isBlank()
+                || USER == null || USER.isBlank()
+                || PASSWORD == null || PASSWORD.isBlank()) {
+            throw new SQLException(
+                "Database configuration missing. Set DB_HOST, DB_USER, and DB_PASSWORD."
+            );
+        }
+
+        String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE
+                + "?sslMode=VERIFY_IDENTITY";
+
+        return DriverManager.getConnection(url, USER, PASSWORD);
     }
 }
