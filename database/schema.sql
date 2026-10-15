@@ -20,46 +20,74 @@ USE `diamondiq`;
 UNLOCK TABLES;
 
 --
--- Table structure for table `matchup_history`
+-- Table structure for table `teams`
 --
 
-DROP TABLE IF EXISTS `matchup_history`;
+DROP TABLE IF EXISTS `teams`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `matchup_history` (
-  `matchup_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `team_one_id` int NOT NULL,
-  `team_two_id` int NOT NULL,
-  `predicted_winner_id` int DEFAULT NULL,
-  `analysis_summary` text,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `team_one_score` double DEFAULT NULL,
-  `team_two_score` double DEFAULT NULL,
-  `confidence` int DEFAULT NULL,
-  PRIMARY KEY (`matchup_id`),
-  KEY `user_id` (`user_id`),
-  KEY `team_one_id` (`team_one_id`),
-  KEY `team_two_id` (`team_two_id`),
-  KEY `predicted_winner_id` (`predicted_winner_id`),
-  CONSTRAINT `matchup_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
-  CONSTRAINT `matchup_history_ibfk_2` FOREIGN KEY (`team_one_id`) REFERENCES `teams` (`team_id`),
-  CONSTRAINT `matchup_history_ibfk_3` FOREIGN KEY (`team_two_id`) REFERENCES `teams` (`team_id`),
-  CONSTRAINT `matchup_history_ibfk_4` FOREIGN KEY (`predicted_winner_id`) REFERENCES `teams` (`team_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `teams` (
+  `team_id` int NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(100) NOT NULL,
+  `abbreviation` varchar(10) NOT NULL,
+  `league` varchar(50) NOT NULL,
+  `division` varchar(50) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  PRIMARY KEY (`team_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `matchup_history`
+-- Dumping data for table `teams`
 --
 
-LOCK TABLES `matchup_history` WRITE;
-/*!40000 ALTER TABLE `matchup_history` DISABLE KEYS */;
-INSERT INTO `matchup_history` VALUES (1,1,15,11,15,'Miami Marlins has a better record.\nHouston Astros has the stronger offense (OPS).\nMiami Marlins has the better pitching (ERA).\nMiami Marlins allows fewer baserunners (WHIP).\nHouston Astros scores more runs.\n','2026-06-28 05:06:36',NULL,NULL,NULL),(2,1,17,16,16,'Milwaukee Brewers has a better record.\nMinnesota Twins has the stronger offense (OPS).\nMilwaukee Brewers has the better pitching (ERA).\nMilwaukee Brewers allows fewer baserunners (WHIP).\nMilwaukee Brewers scores more runs.\n','2026-06-28 05:39:13',134.86,245.16,95),(3,1,7,21,21,'PHI has a better record.\nPHI has the stronger offense (OPS).\nPHI has the better pitching (ERA).\nPHI allows fewer baserunners (WHIP).\nPHI scores more runs.\n','2026-06-28 05:45:02',134.79000000000002,192.71,95),(4,1,5,6,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCWS has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nCHC scores more runs.\n','2026-06-28 07:15:00',191.94999999999996,182.71000000000006,59),(5,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:23:10',146.94000000000003,134.86,62),(6,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:29:58',146.94000000000003,134.86,62),(7,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:31:12',146.94000000000003,134.86,62),(8,1,11,12,11,'HOU has a better record.\nHOU has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:06:24',146.94000000000003,93.75000000000001,95),(9,1,11,15,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:12:40',146.94000000000003,182.14,85),(10,1,15,11,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:27:52',182.14,146.94000000000003,85),(11,1,11,15,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:33:25',146.94000000000003,182.14,85),(12,1,17,8,8,'CLE has a better record.\nMIN has the stronger offense (OPS).\nCLE has the better pitching (ERA).\nCLE allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 09:35:44',134.86,168.35,83),(13,1,5,6,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCWS has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nCHC scores more runs.\n','2026-06-28 09:39:46',191.94999999999996,182.71000000000006,59),(14,1,5,17,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCHC has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 09:43:27',191.94999999999996,134.86,95),(15,1,5,21,21,'Philadelphia Phillies is projected to win because:\nBetter overall record.\nStronger pitching staff (lower ERA).\n\nChicago Cubs\'s biggest advantage is its run production, but DiamondIQ projects Philadelphia Phillies\'s overall profile to be stronger.','2026-06-28 09:48:42',191.94999999999996,192.71,50),(16,1,21,19,19,'WHY NEW YORK YANKEES IS FAVORED\nBetter overall record.\nMore productive offense (higher OPS).\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 09:52:40',192.71,239.04999999999998,95),(17,1,15,29,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 09:59:14',182.14,143.93999999999994,85),(18,1,11,7,11,'Why The Houston Astros Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 10:05:47',146.94000000000003,134.79000000000002,80),(19,1,20,25,25,'Why The Seattle Mariners Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nAthletics\'s biggest advantage is its run production, but DiamondIQ projects Seattle Mariners\'s overall profile to be stronger.','2026-06-28 10:40:01',145.61000000000004,173.69,85),(20,1,15,11,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nHouston Astros\'s biggest advantage is its run production, but DiamondIQ projects Miami Marlins\'s overall profile to be stronger.','2026-06-28 18:08:23',182.14,146.94000000000003,85),(21,1,11,17,11,'Why The Houston Astros Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nMinnesota Twins\'s biggest advantage is its run production, but DiamondIQ projects Houston Astros\'s overall profile to be stronger.','2026-06-28 18:08:58',146.94000000000003,134.86,80),(22,1,8,15,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 19:25:06',168.35,182.14,78),(23,1,20,5,5,'Why The Chicago Cubs Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 19:32:51',145.61000000000004,191.94999999999996,85);
-/*!40000 ALTER TABLE `matchup_history` ENABLE KEYS */;
+LOCK TABLES `teams` WRITE;
+/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` VALUES (1,'Arizona Diamondbacks','ARI','National','West','Phoenix'),(2,'Atlanta Braves','ATL','National','East','Atlanta'),(3,'Baltimore Orioles','BAL','American','East','Baltimore'),(4,'Boston Red Sox','BOS','American','East','Boston'),(5,'Chicago Cubs','CHC','National','Central','Chicago'),(6,'Chicago White Sox','CWS','American','Central','Chicago'),(7,'Cincinnati Reds','CIN','National','Central','Cincinnati'),(8,'Cleveland Guardians','CLE','American','Central','Cleveland'),(9,'Colorado Rockies','COL','National','West','Denver'),(10,'Detroit Tigers','DET','American','Central','Detroit'),(11,'Houston Astros','HOU','American','West','Houston'),(12,'Kansas City Royals','KC','American','Central','Kansas City'),(13,'Los Angeles Angels','LAA','American','West','Anaheim'),(14,'Los Angeles Dodgers','LAD','National','West','Los Angeles'),(15,'Miami Marlins','MIA','National','East','Miami'),(16,'Milwaukee Brewers','MIL','National','Central','Milwaukee'),(17,'Minnesota Twins','MIN','American','Central','Minneapolis'),(18,'New York Mets','NYM','National','East','New York'),(19,'New York Yankees','NYY','American','East','New York'),(20,'Athletics','ATH','American','West','West Sacramento'),(21,'Philadelphia Phillies','PHI','National','East','Philadelphia'),(22,'Pittsburgh Pirates','PIT','National','Central','Pittsburgh'),(23,'San Diego Padres','SD','National','West','San Diego'),(24,'San Francisco Giants','SF','National','West','San Francisco'),(25,'Seattle Mariners','SEA','American','West','Seattle'),(26,'St. Louis Cardinals','STL','National','Central','St. Louis'),(27,'Tampa Bay Rays','TB','American','East','St. Petersburg'),(28,'Texas Rangers','TEX','American','West','Arlington'),(29,'Toronto Blue Jays','TOR','American','East','Toronto'),(30,'Washington Nationals','WSH','National','East','Washington');
+/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
+
+
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `favorite_team_id` int DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'kev','a@a','scooby','2026-06-24 12:36:40',13),(3,'tom','tom@tom','tom','2026-06-24 12:37:48',NULL),(4,'alli','ali@bigone.com','ali3','2026-06-24 13:24:00',NULL),(5,'allison','alli@alli','alli','2026-06-28 18:09:54',11);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
 -- Table structure for table `team_statistics`
 --
 
@@ -100,69 +128,48 @@ INSERT INTO `team_statistics` VALUES (1,1,2026,41,41,349,376,0.239,0.308,0.386,4
 UNLOCK TABLES;
 
 --
--- Table structure for table `teams`
+
+
+-- Table structure for table `matchup_history`
 --
 
-DROP TABLE IF EXISTS `teams`;
+DROP TABLE IF EXISTS `matchup_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `teams` (
-  `team_id` int NOT NULL AUTO_INCREMENT,
-  `team_name` varchar(100) NOT NULL,
-  `abbreviation` varchar(10) NOT NULL,
-  `league` varchar(50) NOT NULL,
-  `division` varchar(50) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  PRIMARY KEY (`team_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `teams`
---
-
-LOCK TABLES `teams` WRITE;
-/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
-INSERT INTO `teams` VALUES (1,'Arizona Diamondbacks','ARI','National','West','Phoenix'),(2,'Atlanta Braves','ATL','National','East','Atlanta'),(3,'Baltimore Orioles','BAL','American','East','Baltimore'),(4,'Boston Red Sox','BOS','American','East','Boston'),(5,'Chicago Cubs','CHC','National','Central','Chicago'),(6,'Chicago White Sox','CWS','American','Central','Chicago'),(7,'Cincinnati Reds','CIN','National','Central','Cincinnati'),(8,'Cleveland Guardians','CLE','American','Central','Cleveland'),(9,'Colorado Rockies','COL','National','West','Denver'),(10,'Detroit Tigers','DET','American','Central','Detroit'),(11,'Houston Astros','HOU','American','West','Houston'),(12,'Kansas City Royals','KC','American','Central','Kansas City'),(13,'Los Angeles Angels','LAA','American','West','Anaheim'),(14,'Los Angeles Dodgers','LAD','National','West','Los Angeles'),(15,'Miami Marlins','MIA','National','East','Miami'),(16,'Milwaukee Brewers','MIL','National','Central','Milwaukee'),(17,'Minnesota Twins','MIN','American','Central','Minneapolis'),(18,'New York Mets','NYM','National','East','New York'),(19,'New York Yankees','NYY','American','East','New York'),(20,'Athletics','ATH','American','West','West Sacramento'),(21,'Philadelphia Phillies','PHI','National','East','Philadelphia'),(22,'Pittsburgh Pirates','PIT','National','Central','Pittsburgh'),(23,'San Diego Padres','SD','National','West','San Diego'),(24,'San Francisco Giants','SF','National','West','San Francisco'),(25,'Seattle Mariners','SEA','American','West','Seattle'),(26,'St. Louis Cardinals','STL','National','Central','St. Louis'),(27,'Tampa Bay Rays','TB','American','East','St. Petersburg'),(28,'Texas Rangers','TEX','American','West','Arlington'),(29,'Toronto Blue Jays','TOR','American','East','Toronto'),(30,'Washington Nationals','WSH','National','East','Washington');
-/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+CREATE TABLE `matchup_history` (
+  `matchup_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `team_one_id` int NOT NULL,
+  `team_two_id` int NOT NULL,
+  `predicted_winner_id` int DEFAULT NULL,
+  `analysis_summary` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `favorite_team_id` int DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `team_one_score` double DEFAULT NULL,
+  `team_two_score` double DEFAULT NULL,
+  `confidence` int DEFAULT NULL,
+  PRIMARY KEY (`matchup_id`),
+  KEY `user_id` (`user_id`),
+  KEY `team_one_id` (`team_one_id`),
+  KEY `team_two_id` (`team_two_id`),
+  KEY `predicted_winner_id` (`predicted_winner_id`),
+  CONSTRAINT `matchup_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `matchup_history_ibfk_2` FOREIGN KEY (`team_one_id`) REFERENCES `teams` (`team_id`),
+  CONSTRAINT `matchup_history_ibfk_3` FOREIGN KEY (`team_two_id`) REFERENCES `teams` (`team_id`),
+  CONSTRAINT `matchup_history_ibfk_4` FOREIGN KEY (`predicted_winner_id`) REFERENCES `teams` (`team_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `matchup_history`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'kev','a@a','scooby','2026-06-24 12:36:40',13),(3,'tom','tom@tom','tom','2026-06-24 12:37:48',NULL),(4,'alli','ali@bigone.com','ali3','2026-06-24 13:24:00',NULL),(5,'allison','alli@alli','alli','2026-06-28 18:09:54',11);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `matchup_history` WRITE;
+/*!40000 ALTER TABLE `matchup_history` DISABLE KEYS */;
+INSERT INTO `matchup_history` VALUES (1,1,15,11,15,'Miami Marlins has a better record.\nHouston Astros has the stronger offense (OPS).\nMiami Marlins has the better pitching (ERA).\nMiami Marlins allows fewer baserunners (WHIP).\nHouston Astros scores more runs.\n','2026-06-28 05:06:36',NULL,NULL,NULL),(2,1,17,16,16,'Milwaukee Brewers has a better record.\nMinnesota Twins has the stronger offense (OPS).\nMilwaukee Brewers has the better pitching (ERA).\nMilwaukee Brewers allows fewer baserunners (WHIP).\nMilwaukee Brewers scores more runs.\n','2026-06-28 05:39:13',134.86,245.16,95),(3,1,7,21,21,'PHI has a better record.\nPHI has the stronger offense (OPS).\nPHI has the better pitching (ERA).\nPHI allows fewer baserunners (WHIP).\nPHI scores more runs.\n','2026-06-28 05:45:02',134.79000000000002,192.71,95),(4,1,5,6,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCWS has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nCHC scores more runs.\n','2026-06-28 07:15:00',191.94999999999996,182.71000000000006,59),(5,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:23:10',146.94000000000003,134.86,62),(6,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:29:58',146.94000000000003,134.86,62),(7,1,11,17,11,'HOU has a better record.\nMIN has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 08:31:12',146.94000000000003,134.86,62),(8,1,11,12,11,'HOU has a better record.\nHOU has the stronger offense (OPS).\nHOU has the better pitching (ERA).\nHOU allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:06:24',146.94000000000003,93.75000000000001,95),(9,1,11,15,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:12:40',146.94000000000003,182.14,85),(10,1,15,11,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:27:52',182.14,146.94000000000003,85),(11,1,11,15,15,'MIA has a better record.\nHOU has the stronger offense (OPS).\nMIA has the better pitching (ERA).\nMIA allows fewer baserunners (WHIP).\nHOU scores more runs.\n','2026-06-28 09:33:25',146.94000000000003,182.14,85),(12,1,17,8,8,'CLE has a better record.\nMIN has the stronger offense (OPS).\nCLE has the better pitching (ERA).\nCLE allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 09:35:44',134.86,168.35,83),(13,1,5,6,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCWS has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nCHC scores more runs.\n','2026-06-28 09:39:46',191.94999999999996,182.71000000000006,59),(14,1,5,17,5,'CHC has a better record.\nCHC has the stronger offense (OPS).\nCHC has the better pitching (ERA).\nCHC allows fewer baserunners (WHIP).\nMIN scores more runs.\n','2026-06-28 09:43:27',191.94999999999996,134.86,95),(15,1,5,21,21,'Philadelphia Phillies is projected to win because:\nBetter overall record.\nStronger pitching staff (lower ERA).\n\nChicago Cubs\'s biggest advantage is its run production, but DiamondIQ projects Philadelphia Phillies\'s overall profile to be stronger.','2026-06-28 09:48:42',191.94999999999996,192.71,50),(16,1,21,19,19,'WHY NEW YORK YANKEES IS FAVORED\nBetter overall record.\nMore productive offense (higher OPS).\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 09:52:40',192.71,239.04999999999998,95),(17,1,15,29,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 09:59:14',182.14,143.93999999999994,85),(18,1,11,7,11,'Why The Houston Astros Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 10:05:47',146.94000000000003,134.79000000000002,80),(19,1,20,25,25,'Why The Seattle Mariners Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nAthletics\'s biggest advantage is its run production, but DiamondIQ projects Seattle Mariners\'s overall profile to be stronger.','2026-06-28 10:40:01',145.61000000000004,173.69,85),(20,1,15,11,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nHouston Astros\'s biggest advantage is its run production, but DiamondIQ projects Miami Marlins\'s overall profile to be stronger.','2026-06-28 18:08:23',182.14,146.94000000000003,85),(21,1,11,17,11,'Why The Houston Astros Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\n\nMinnesota Twins\'s biggest advantage is its run production, but DiamondIQ projects Houston Astros\'s overall profile to be stronger.','2026-06-28 18:08:58',146.94000000000003,134.86,80),(22,1,8,15,15,'Why The Miami Marlins Are Favored\nBetter overall record.\nMore productive offense (higher OPS).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 19:25:06',168.35,182.14,78),(23,1,20,5,5,'Why The Chicago Cubs Are Favored\nBetter overall record.\nStronger pitching staff (lower ERA).\nAllows fewer baserunners (lower WHIP).\nScores more runs offensively.\n','2026-06-28 19:32:51',145.61000000000004,191.94999999999996,85);
+/*!40000 ALTER TABLE `matchup_history` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
 
--- Dump completed on 2026-06-28 14:52:01
+
+-- Verify imported tables with: SHOW TABLES;
