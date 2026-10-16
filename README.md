@@ -35,5 +35,4 @@ database/schema.sql
 2. Update the database credentials in `DBConnection.java` if necessary.
 3. Deploy the application to Apache Tomcat.
 4. Visit:
-
-http://localhost:8080/DiamondIQ/login.jsp
+https://diamondiq-kjlr.onrender.com/DiamondIQ/login.jsp
